@@ -1,5 +1,5 @@
-# BSP1
- My Bachelor Semester Project 1
+# Bachelor Semester Project 1
+ How to install and run the project on a local machine:
 
 1) Download the source code
 2) Download XAMPP with PHP Version 7.3.10
