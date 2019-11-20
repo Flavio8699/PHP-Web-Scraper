@@ -1,0 +1,5 @@
+{
+    "require": {
+        "html2text/html2text": "^4.2"
+    }
+}

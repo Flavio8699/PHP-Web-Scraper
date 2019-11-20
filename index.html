@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PHP Web Scraper</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="CSS/scraper.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Roboto|Montserrat|Inconsolata&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="header">
+        PHP Web Scraper
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="content-box-large">
+                    <span class="box_title">URL & Conditions</span>
+                    <br>
+                    <div class="row" id="urlChoice">
+                        <div class="col-xs-5">
+                            <button class="btn btn-md btn-default" style="width: 100%" onclick="choice('insertURL')">Insert Website URL</button>
+                        </div>
+                        <div class="col-xs-2">
+                            <center style="margin-top: 6px">or</center>
+                        </div>
+                        <div class="col-xs-5">
+                            <button class="btn btn-md btn-default" style="width: 100%" onclick="choice('uploadCSVFile')">Upload CSV file</button>
+                        </div><br><br><br>
+                    </div>
+                    <div id="insertURL" style="display: none">
+                        <label>Website URL</label>
+                        <input type="text" id="url" style="width: 100%" class="form-control" placeholder="Example: http://www.google.com"><br>
+                    </div>
+                    <div id="uploadCSVFile" style="display: none;">
+                        <label>Upload CSV file</label>
+                        <input type="file" id="csv" class="form-control" accept=".csv" style="width: 100%">
+                        <i>The CSV file should contain 1 or multiple website urls.</i><br><br>
+                    </div>
+                    <div id="rest" style="display: none">
+                        <div class="row">
+                            <div class="col-xs-8" id="conditions">
+                                <label>Conditions</label>
+                                <input type="text" class="form-control user_condition" placeholder="Condition"><br>
+                            </div>
+                            <div class="col-xs-4" id="connectors">
+                                <label>Connectors</label>
+                                <select class="form-control" id="connector_0" disabled>
+                                        <option value="AND">AND</option>
+                                        <option value="OR">OR</option>
+                                        <option value="ANDNOT">ANDNOT</option>
+                                        <option value="ORNOT">ORNOT</option>
+                                    </select><br>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-md btn-success pull-right" onclick="addCondition()" id="addConditionButton"><i class="fas fa-plus"></i> Add condition</button><br>
+                        <label>Levels</label>
+                        <select class="form-control" id="levels">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select><br>
+                        <button type="button" class="btn btn-md btn-success" style="width: 100%" onclick="startScraper()" id="startScraperButton"><i class="fas fa-search"></i> Start</button>
+                    </div>
+                </div>
+                <div class="content-box-large" id="calculations" style="display: none">
+                    <span class="box_title">Numbers</span>
+                    <label>Hits on first page:</label> <span id="result_1">0</span><br>
+                    <label>Total number of hits:</label> <span id="result_2">0</span><br>
+                    <label>Total number of pages:</label> <span id="result_3">0</span><br>
+                    <label>(Hits on first page / Total number of pages):</label> <span id="result_4">0</span><br>
+                    <label>(Total number of hits / Total number of pages):</label> <span id="result_5">0</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="content-box-large">
+                    <span class="box_title">Results <button class="btn btn-md btn-primary pull-right" id="export" style="margin-top: -5px" disabled><i class="fas fa-file-csv"></i> Export as CSV</button></span>
+                    <textarea class="form-control" rows="20" id="console" disabled></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="JS/scraper.js"></script>
+</body>
+
+</html>
