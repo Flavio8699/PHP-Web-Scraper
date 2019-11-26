@@ -21,8 +21,9 @@ class WebScraper extends \Html2Text\Html2Text
                 CURLOPT_FOLLOWLOCATION => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_AUTOREFERER => true,
-                CURLOPT_CONNECTTIMEOUT => 10,
-                CURLOPT_TIMEOUT => 10,
+                CURLOPT_SSL_VERIFYPEER => false,
+                CURLOPT_CONNECTTIMEOUT => 15,
+                CURLOPT_TIMEOUT => 15,
                 CURLOPT_MAXREDIRS => 10,
             ));
 
@@ -33,23 +34,26 @@ class WebScraper extends \Html2Text\Html2Text
                 case 301:
                 case 401:
                 case 403:
+                case 302:
+                case 429:
                     parent::__construct($response);
                     break;
 
                 case 0:
                     $_SESSION['comment'] = 'Website can\'t be reached';
-                    $this->matches = -1;
                     break;
 
                 case 404:
                     $_SESSION['comment'] = 'Error 404: page not found';
-                    $this->matches = -1;
                     break;
 
                 default:
-                    $_SESSION['comment'] = 'ERROR: HTTP STATUS CODE ' . $code;
-                    $this->matches = -1;
+                    $_SESSION['comment'] = 'error';
                     break;
+            }
+
+            if (curl_error($curl) != "") {
+                file_put_contents("../errors.txt", $url . "\n-> " . curl_error($curl) . "\n\n", FILE_APPEND);
             }
 
             curl_close($curl);
@@ -77,10 +81,10 @@ class WebScraper extends \Html2Text\Html2Text
         $text = preg_replace('/\[[^\]]*\]/', '$1 $2', $text);
 
         /* Remove parenthesis */
-        $text = str_replace(['(', ')'], '', $text);
+        $text = str_replace(['(', ')', '*', '_'], '', $text);
 
         /* Match parts of the text that start with a capital letter and (optional) end with a dot, question mark or exclamation mark */
-        preg_match_all('/[A-Z][\w ,\'"`’‑-]+[\.\?!]?/', $text, $output);
+        preg_match_all('/[[:alnum:]][[:alnum:],\'\/ "`’%‑@&€:;#$+—-]+[\.\?!]?/u', $text, $output);
 
         /* Replace all single or multiple whitespaces with a single whitespace and remove - and _ from the text */
         foreach ($output[0] as $key => $value) {
@@ -139,7 +143,7 @@ class WebScraper extends \Html2Text\Html2Text
                     break;
 
                 default:
-                    $parts[$key] = preg_replace('/[a-zA-z0-9-]+/', 'strpos($line, " $0 ") !== false', $part);
+                    $parts[$key] = preg_replace('/[\w,\'"`’%‑@&+—-]+/u', 'preg_match("/\b$0\b/i", $line, $o)', $part);
                     break;
             }
         }

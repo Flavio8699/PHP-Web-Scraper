@@ -3,7 +3,7 @@ session_start();
 
 header('Content-Type: application/json');
 
-error_reporting(0);
+error_reporting(E_ALL);
 
 // Get the results for calculations for type URL (type FILE contains this calculations in the result.csv file)
 if (isset($_GET['getResults'], $_SESSION['hitsOnFirstPage'], $_SESSION['totalHits'], $_SESSION['totalPages'])) {
