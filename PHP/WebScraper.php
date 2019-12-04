@@ -80,15 +80,15 @@ class WebScraper extends \Html2Text\Html2Text
         /* Remove strings inside of brackets [] to clean (most of the cases these are url's) */
         $text = preg_replace('/\[[^\]]*\]/', '$1 $2', $text);
 
-        /* Remove parenthesis */
+        /* Remove some characters */
         $text = str_replace(['(', ')', '*', '_'], '', $text);
 
-        /* Match parts of the text that start with a capital letter and (optional) end with a dot, question mark or exclamation mark */
+        /* Try to identify sentences the most accurate possible */
         preg_match_all('/[[:alnum:]][[:alnum:],\'\/ "`’%‑@&€:;#$+—-]+[\.\?!]?/u', $text, $output);
 
         /* Replace all single or multiple whitespaces with a single whitespace and remove - and _ from the text */
         foreach ($output[0] as $key => $value) {
-            $output[0][$key] = preg_replace(['/\s+/', '/[_-]/'], [' ', ''], $value);
+            $output[0][$key] = preg_replace('/\s+/', ' ', $value);
         }
 
         return $output;

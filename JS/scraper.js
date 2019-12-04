@@ -79,8 +79,8 @@ function writeLineToConsole(msg) {
 
 function addCondition() {
     i++;
-    $("#conditions").append('<input type="text" class="form-control user_condition" placeholder="Condition"><br>');
-    $("#connectors").append('<select class="form-control" id="connector_' + i + '"><option value="AND">AND</option><option value="OR">OR</option><option value="ANDNOT">ANDNOT</option><option value="ORNOT">ORNOT</option></select><br>');
+    $("#conditions").append('<div class="row"><div class="col-xs-12"><input type="text" class="form-control user_condition" placeholder="Condition"></div></div>');
+    $("#connectors").append('<div class="row"><div class="col-xs-12"><select class="form-control" id="connector_' + i + '"><option value="AND">AND</option><option value="OR">OR</option><option value="ANDNOT">ANDNOT</option><option value="ORNOT">ORNOT</option></select></div></div>');
 }
 
 function choice(c) {

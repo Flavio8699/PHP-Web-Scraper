@@ -26,13 +26,13 @@ class RequestHandler extends WebScraper
             case 'url':
                 $_SESSION['type'] = 'url';
                 $_SESSION['baseURLs'] = [$_POST['url']];
-                fputcsv($results, ['Website URL', 'Matches']);
+                fputcsv($results, ['Website URL', 'Matches'], ';');
                 break;
 
             case 'file':
                 $_SESSION['type'] = 'file';
                 $this->getURLsFromCSV($files['csv']['tmp_name']);
-                fputcsv($results, ['Website URL', 'Hits on first page', 'Total number of hits', 'Total number of pages', 'Hits on first page / Total number of pages', 'Total number of hits / Total number of pages', 'Comment']);
+                fputcsv($results, ['Website URL', 'Hits on first page', 'Total number of hits', 'Total number of pages', 'Hits on first page / Total number of pages', 'Total number of hits / Total number of pages', 'Comment'], ';');
                 break;
         }
         fclose($results);
@@ -73,7 +73,7 @@ class RequestHandler extends WebScraper
         if ($this->urlID == 0 && $this->level == 1) {
             if (isset($_SESSION['currentURL']) && $_SESSION['type'] == 'file') {
                 $results = fopen("../result.csv", "a");
-                fputcsv($results, [$this->previousBaseURL(), $_SESSION['hitsOnFirstPage'], $_SESSION['totalHits'], $_SESSION['totalPages'], ($_SESSION['hitsOnFirstPage'] > 0) ? number_format((float) ($_SESSION['hitsOnFirstPage'] / $_SESSION['totalHits']), 2, '.', '') : 'NaN', ($_SESSION['totalHits'] > 0) ? number_format((float) ($_SESSION['totalHits'] / $_SESSION['totalPages']), 2, '.', '') : 'NaN', isset($_SESSION['comment']) ? $_SESSION['comment'] : '']);
+                fputcsv($results, [$this->previousBaseURL(), $_SESSION['hitsOnFirstPage'], $_SESSION['totalHits'], $_SESSION['totalPages'], ($_SESSION['hitsOnFirstPage'] > 0) ? number_format((float) ($_SESSION['hitsOnFirstPage'] / $_SESSION['totalHits']), 2, '.', '') : 'NaN', ($_SESSION['totalHits'] > 0) ? number_format((float) ($_SESSION['totalHits'] / $_SESSION['totalPages']), 2, '.', '') : 'NaN', isset($_SESSION['comment']) ? $_SESSION['comment'] : ''], ';');
                 fclose($results);
             }
 
@@ -98,7 +98,7 @@ class RequestHandler extends WebScraper
 
         if ($_SESSION['type'] == 'url') {
             $results = fopen("../result.csv", "a");
-            fputcsv($results, [$this->URL, $this->getMatchesCount()]);
+            fputcsv($results, [$this->URL, $this->getMatchesCount()], ';');
             fclose($results);
         }
     }
@@ -145,7 +145,7 @@ class RequestHandler extends WebScraper
             } else {
                 if (isset($_SESSION['currentURL']) && $_SESSION['type'] == 'file') {
                     $results = fopen("../result.csv", "a");
-                    fputcsv($results, [$this->previousBaseURL(), $_SESSION['hitsOnFirstPage'], $_SESSION['totalHits'], $_SESSION['totalPages'], ($_SESSION['hitsOnFirstPage'] > 0) ? number_format((float) ($_SESSION['hitsOnFirstPage'] / $_SESSION['totalPages']), 2, '.', '') : 'NaN', ($_SESSION['totalHits'] > 0) ? number_format((float) ($_SESSION['totalHits'] / $_SESSION['totalPages']), 2, '.', '') : 'NaN', isset($_SESSION['comment']) ? $_SESSION['comment'] : '']);
+                    fputcsv($results, [$this->previousBaseURL(), $_SESSION['hitsOnFirstPage'], $_SESSION['totalHits'], $_SESSION['totalPages'], ($_SESSION['hitsOnFirstPage'] > 0) ? number_format((float) ($_SESSION['hitsOnFirstPage'] / $_SESSION['totalPages']), 2, '.', '') : 'NaN', ($_SESSION['totalHits'] > 0) ? number_format((float) ($_SESSION['totalHits'] / $_SESSION['totalPages']), 2, '.', '') : 'NaN', isset($_SESSION['comment']) ? $_SESSION['comment'] : ''], ';');
                     fclose($results);
                 }
 
