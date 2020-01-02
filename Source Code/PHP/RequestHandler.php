@@ -21,7 +21,7 @@ class RequestHandler extends WebScraper
         $_SESSION['totalHits'] = 0;
         $_SESSION['totalPages'] = 0;
 
-        $results = fopen('../result.csv', 'w');
+        $results = fopen('../result.csv', 'a');
         switch ($type) {
             case 'url':
                 $_SESSION['type'] = 'url';
@@ -110,7 +110,7 @@ class RequestHandler extends WebScraper
                 $_SESSION['urls']['lvl' . $this->nextLevel] = [];
             }
 
-            $this->renderSubURLS();
+            $this->renderSubURLs();
             $_SESSION['urls']['lvl' . $this->nextLevel] = array_values(array_unique(array_merge($_SESSION['urls']['lvl' . $this->nextLevel], $this->getSubURLs())));
         }
 

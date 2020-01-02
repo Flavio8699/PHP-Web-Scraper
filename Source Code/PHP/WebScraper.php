@@ -94,7 +94,7 @@ class WebScraper extends \Html2Text\Html2Text
         return $output;
     }
 
-    public function renderSubURLS(): void
+    public function renderSubURLs(): void
     {
         preg_match_all('/\[[^\]]*\]/', $this->getText(), $matches);
 
