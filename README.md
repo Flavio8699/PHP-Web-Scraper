@@ -1,5 +1,6 @@
 # Bachelor Semester Project 1
- How to install and run the project on a local machine:
+ 
+## How to install and run the project on a local machine:
 
 1) Download the source code
 2) Download XAMPP with PHP Version 7.3.10
@@ -11,3 +12,5 @@ https://www.apachefriends.org/download.html
 7) Open XAMPP
 8) Run Apache Web Server
 9) Run http://localhost/ on your web browser
+
+## Test
