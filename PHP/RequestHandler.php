@@ -21,7 +21,7 @@ class RequestHandler extends WebScraper
         $_SESSION['totalHits'] = 0;
         $_SESSION['totalPages'] = 0;
 
-        $results = fopen('../result.csv', 'a');
+        $results = fopen('../result.csv', 'w');
         switch ($type) {
             case 'url':
                 $_SESSION['type'] = 'url';
