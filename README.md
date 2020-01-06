@@ -1,7 +1,5 @@
 # Bachelor Semester Project 1
 
-All the deliverables produced can be found [here](https://drive.google.com/drive/folders/1Me1OXcNphnCtO8cejfdVKI1enTuKKTgU?usp=sharing).
-
 ## How to install?
 
 1) Download the source code
