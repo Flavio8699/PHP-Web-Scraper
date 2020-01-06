@@ -1,5 +1,12 @@
 # Bachelor Semester Project 1
- How to install and run the project on a local machine:
+
+## Content
+1. **'Source Code'-folder:** Source code files of the project
+2. **bsp01-dejesusmatias-flavio-scientific-and-technical-report.pdf:** Final scientific and technical report in english
+3. **bsp01-dejesusmatias-flavio-primary-language-summary.pdf:** Primary language summary (English)
+4. **bsp01-dejesusmatias-flavio-secondary-language-summary.pdf:** Secondary language summary (German)
+
+## How to install?
 
 1) Download the source code
 2) Download XAMPP with PHP Version 7.3.10
