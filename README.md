@@ -1,4 +1,5 @@
 # Bachelor Semester Project 1
+This repository contains my Bachelor Semester Project 1 which is a PHP Web Scraper.
 
 **Grade:** 20/20
 
