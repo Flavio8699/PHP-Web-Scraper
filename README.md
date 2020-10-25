@@ -1,5 +1,7 @@
 # Bachelor Semester Project 1
 
+**Grade:** 20/20
+
 ## How to install?
 
 1) Download the source code
